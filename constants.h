@@ -3,5 +3,6 @@
 /*
 	Constants file definition
 */
-char title[6] = "title";
-char body[5] = "body";
+char TITLE[6] = "title";
+char BODY[5] = "body";
+char ID[3] = "id";

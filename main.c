@@ -17,11 +17,9 @@
 void getIDByNode(xmlNode *node, char *id){
 
 	xmlNode *aux = node;
-	xmlNode *aux1;
-	char text[3] = "id";
 
-	for(aux1 = aux; aux; aux = aux->next){
-		if(strcmp((char*)aux->name,text) == 0){
+	for(; aux; aux = aux->next){
+		if(strcmp((char*)aux->name,ID) == 0){
 			strcpy(id, (char*)aux->children->content);
 			break;
 		}
@@ -29,17 +27,16 @@ void getIDByNode(xmlNode *node, char *id){
 }
 
 void printNodeChildren(xmlNode *node, FILE *terms){
-	xmlNode *aux;
 	char id[5];
 
 	getIDByNode(node, id);
 
-	for(aux = node; node; node = node->next){
+	for(; node; node = node->next){
 		if(node->children){
-			if(strcmp((char*)node->name, title) == 0){
+			if(strcmp((char*)node->name, TITLE) == 0){
 				writeTitleTerms((char*)node->children->content, id, terms);	
 			}
-			else if(strcmp((char*)node->name, body) == 0){
+			else if(strcmp((char*)node->name, BODY) == 0){
 				writeBodyTerms((char*)node->children->content, id, terms);	
 			}
 		}
