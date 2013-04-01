@@ -1,5 +1,6 @@
 *.exe
 *.swp
+*.txt
 *.o
 main
 

@@ -26,21 +26,54 @@ void getIDByNode(xmlNode *node, char *id){
 	}
 }
 
-void printNodeChildren(xmlNode *node, FILE *terms){
+void generateTXTFiles(xmlNode *node){
+
 	char id[5];
+	char adRec[500] = "";
+
+	strcat(adRec, "<");
+	strcat(adRec, AD);
+	strcat(adRec, ">");
 
 	getIDByNode(node, id);
 
 	for(; node; node = node->next){
+
 		if(node->children){
+
+			strcat(adRec, "<");
+			strcat(adRec, (char*) node->name);
+			strcat(adRec, ">");
+
+			strcat(adRec, (char*)node->children->content);
+
 			if(strcmp((char*)node->name, TITLE) == 0){
 				writeTitleTerms((char*)node->children->content, id, terms);	
 			}
 			else if(strcmp((char*)node->name, BODY) == 0){
 				writeBodyTerms((char*)node->children->content, id, terms);	
 			}
+			else if(strcmp((char*)node->name, PDATE) == 0){
+				writePdates((char*)node->children->content, id, pdates);	
+			}
+			else if(strcmp((char*)node->name, PRICE) == 0){
+				writePrices((char*)node->children->content, id, prices);	
+			}
+
+			strcat(adRec, "</");
+			strcat(adRec, (char*)node->name);
+			strcat(adRec, ">");
+
 		}
+
 	}
+
+	strcat(adRec, "</");
+	strcat(adRec, AD);
+	strcat(adRec, ">");
+	
+	writeAd(adRec, ads);
+
 }
 
 int main(int argc, char *argv[]){
@@ -56,12 +89,10 @@ int main(int argc, char *argv[]){
 	}
 
 	xmlfilename = argv[1];
-	FILE *terms = fopen("terms.txt","w+");
 	
 	document = xmlReadFile(xmlfilename, NULL, XML_PARSE_RECOVER);
 	root = xmlDocGetRootElement(document);
 	
-	fprintf(stdout, "Root is <%s> (%i)\n", root->name, root->type);
 	first_child = root->children;
 	
 	int i = 0;
@@ -70,8 +101,8 @@ int main(int argc, char *argv[]){
 
 		if(node->type == 1){
 			++i;
-			fprintf(stdout, "\n\n%d - \t <%s>\ttype:(%i)\n\n", i, node->name, node->type);
-			printNodeChildren(node->children, terms);
+//			fprintf(stdout, "\n\n%d - \t <%s>\ttype:(%i)\n\n", i, node->name, node->type);
+			generateTXTFiles(node->children);
 		}
 	}
 

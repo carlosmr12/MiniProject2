@@ -10,7 +10,7 @@
 #include "fileHelper.h"
 #include "stringHelper.h"
 
-bool writeTitleTerms(char *title, char *id, FILE *terms){
+bool writeTitleTerms(char *title, char *id, FILE* terms){
 	char *term;
 
 	term = strtok(title, " \n,!@#$%^&*+-=<’;\'\":>?/.");
@@ -28,7 +28,7 @@ bool writeTitleTerms(char *title, char *id, FILE *terms){
 	return true;
 }
 
-bool writeBodyTerms(char *body, char *id, FILE *terms){
+bool writeBodyTerms(char *body, char *id, FILE* terms){
 	char *term;
 
 	term = strtok(body, " \n,!@#$%^&*+-=<'’;:>\'\"?/.");
@@ -41,6 +41,27 @@ bool writeBodyTerms(char *body, char *id, FILE *terms){
 		}
 		term = strtok(NULL, " \n,!@#$%^&*+'’-=<;:>\'\"?/.");
 	}
+
+	return true;
+}
+
+bool writePdates(char *date, char *id, FILE* pdates){
+	
+	fprintf(pdates, "%s:%s\n",date, id);
+
+	return true;
+}
+
+bool writePrices(char *price, char *id, FILE* prices){
+
+	fprintf(prices, "%s:%s\n",price, id);
+
+	return true;
+}
+
+bool writeAd(char *adRec, FILE*  ads){
+
+	fprintf(ads, "%s\n", adRec);
 
 	return true;
 }
