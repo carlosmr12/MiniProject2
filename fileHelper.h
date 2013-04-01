@@ -13,3 +13,5 @@ bool writePdates(char *date, char *id, FILE *pdates);
 bool writePrices(char *date, char *id, FILE *pdates);
 
 bool writeAd(char *adRec, FILE*  ads);
+
+bool closeFiles(FILE* terms, FILE* pdates, FILE* prices, FILE* ads);

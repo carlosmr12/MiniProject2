@@ -19,7 +19,6 @@ bool writeTitleTerms(char *title, char *id, FILE* terms){
 		prepStr(term);
 		prepStr(term);
 		if(strlen(term) > 2){
-			fprintf(stdout, "t-%s:%s\n",term, id);
 			fprintf(terms, "t-%s:%s\n",term, id);
 		}
 		term = strtok(NULL, " \n,!@#$%^&*’+-=\'\"<;:>?/.");
@@ -36,7 +35,6 @@ bool writeBodyTerms(char *body, char *id, FILE* terms){
 	while(term != NULL){
 		prepStr(term);
 		if(strlen(term) > 2){
-			fprintf(stdout, "b-%s:%s\n",term, id);
 			fprintf(terms, "b-%s:%s\n",term, id);
 		}
 		term = strtok(NULL, " \n,!@#$%^&*+'’-=<;:>\'\"?/.");
@@ -64,4 +62,23 @@ bool writeAd(char *adRec, FILE*  ads){
 	fprintf(ads, "%s\n", adRec);
 
 	return true;
+}
+
+bool closeFiles(FILE* terms, FILE* pdates, FILE* prices, FILE* ads){
+
+	if(fclose(terms) == EOF){
+		return false;
+	}
+	if(fclose(pdates) == EOF){
+		return false;
+	}
+	if(fclose(prices) == EOF){
+		return false;
+	}
+	if(fclose(ads) == EOF){
+		return false;
+	}
+
+	return true;
+	
 }

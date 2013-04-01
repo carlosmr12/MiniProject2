@@ -95,22 +95,22 @@ int main(int argc, char *argv[]){
 	
 	first_child = root->children;
 	
-	int i = 0;
-
 	for(node = first_child; node; node = node->next){
 
 		if(node->type == 1){
-			++i;
-//			fprintf(stdout, "\n\n%d - \t <%s>\ttype:(%i)\n\n", i, node->name, node->type);
 			generateTXTFiles(node->children);
 		}
+	}
+
+	if(!closeTXTFiles()){
+		fprintf(stdout, "Error happened to close the .txt files\n");
+		exit(10);
 	}
 
 	xmlFreeDoc(document);
 
 	xmlCleanupParser();
 
-	fprintf(stdout, "...!\n");
 
 	return 0;
 }

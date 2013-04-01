@@ -1,5 +1,6 @@
 #pragma once
 
+#include "fileHelper.h"
 /*
 	Constants file definition
 */
@@ -15,3 +16,6 @@ FILE *pdates = fopen("pdates.txt","w+");
 FILE *prices = fopen("prices.txt","w+");
 FILE *ads = fopen("ads.txt","w+");
 
+bool closeTXTFiles(){
+	return closeFiles(terms, pdates, prices, ads);
+}
