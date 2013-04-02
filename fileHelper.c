@@ -18,7 +18,7 @@ bool writeTitleTerms(char *title, char *id, FILE* terms){
 	while(term != NULL){
 		prepStr(term);
 		prepStr(term);
-		if(strlen(term) > 2){
+		if(strlen(term) > 2 && strncmp(term, "&#", 2) != 0){
 			fprintf(terms, "t-%s:%s\n",term, id);
 		}
 		term = strtok(NULL, " \n,!@#$%^&*’+-=\'\"<;:>?/.");
@@ -34,7 +34,7 @@ bool writeBodyTerms(char *body, char *id, FILE* terms){
 
 	while(term != NULL){
 		prepStr(term);
-		if(strlen(term) > 2){
+		if(strlen(term) > 2 && strncmp(term, "&#", 2) != 0){
 			fprintf(terms, "b-%s:%s\n",term, id);
 		}
 		term = strtok(NULL, " \n,!@#$%^&*+'’-=<;:>\'\"?/.");
