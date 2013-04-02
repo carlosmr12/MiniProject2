@@ -20,7 +20,7 @@ clean:
 	rm -rf *.o main
 
 #	Execute phase2 script
-phase2: phase2
+phase2:
 	./phase2
 
 #   file dependencies: paste output of g++ -MM *.c here
