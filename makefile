@@ -19,6 +19,10 @@ main : main.o stringHelper.o fileHelper.o
 clean:
 	rm -rf *.o main
 
+#	Execute phase2 script
+phase2: phase2
+	./phase2
+
 #   file dependencies: paste output of g++ -MM *.c here
 #   if one file on the rhs is newer, use rule to update lhs
 main.o : main.c stringHelper.h stringHelper.c fileHelper.h fileHelper.c constants.h
