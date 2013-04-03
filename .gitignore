@@ -1,6 +1,10 @@
 *.exe
 *.swp
-*.txt
+*.idx
 *.o
 main
+terms.txt
+pdates.txt
+prices.txt
+ads.txt
 

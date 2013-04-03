@@ -26,3 +26,16 @@ void prepStr(char *str){
 	removeSpaces(str);
 }
 
+void removeBreakLines(char* str){
+	char *write = str, *read = str;
+	do while((*read) == '\n') 
+		read++; 
+	while((*write++ = *read++));
+}
+
+void removeTabs(char* str){
+	char *write = str, *read = str;
+	do while((*read) == '\t') 
+		read++; 
+	while((*write++ = *read++));
+}

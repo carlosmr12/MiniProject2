@@ -45,7 +45,14 @@ void generateTXTFiles(xmlNode *node){
 			strcat(adRec, (char*) node->name);
 			strcat(adRec, ">");
 
-			strcat(adRec, (char*)node->children->content);
+			int size = (int)strlen((char*)node->children->content);
+			char content[size];
+
+			strcpy(content, (char*)node->children->content);
+			removeBreakLines(content);
+			removeTabs(content);
+
+			strcat(adRec, content);
 
 			if(strcmp((char*)node->name, TITLE) == 0){
 				writeTitleTerms((char*)node->children->content, id, terms);	
@@ -72,7 +79,7 @@ void generateTXTFiles(xmlNode *node){
 	strcat(adRec, AD);
 	strcat(adRec, ">");
 	
-	writeAd(adRec, ads);
+	writeAd(adRec, id, ads);
 
 }
 

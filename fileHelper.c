@@ -57,9 +57,9 @@ bool writePrices(char *price, char *id, FILE* prices){
 	return true;
 }
 
-bool writeAd(char *adRec, FILE*  ads){
+bool writeAd(char *adRec, char *id, FILE*  ads){
 
-	fprintf(ads, "%s\n", adRec);
+	fprintf(ads, "%s:%s\n", id, adRec);
 
 	return true;
 }
