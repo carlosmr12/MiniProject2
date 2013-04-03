@@ -2,7 +2,7 @@
 
 rm -f ad.idx te.idx da.idx pr.idx
 
-sort -u -n ads.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t hash ad.idx
-sort -u terms.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree te.idx
-sort -u pdates.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree da.idx
-sort -u -n prices.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree pr.idx
+sort -u -n ads.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t hash -c duplicates=1 ad.idx
+sort -u terms.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree -c duplicates=1 te.idx
+sort -u pdates.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree -c duplicates=1 da.idx
+sort -u -n prices.txt | awk -F : '{print $1; print $2}' | sed 's/\\/\\\\/g' | db_load -T -t btree -c duplicates=1 pr.idx
