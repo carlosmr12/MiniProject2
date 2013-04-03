@@ -52,7 +52,8 @@ bool writePdates(char *date, char *id, FILE* pdates){
 
 bool writePrices(char *price, char *id, FILE* prices){
 
-	fprintf(prices, "%s:%s\n",price, id);
+	int auxp = atoi(price);
+	fprintf(prices, "%8d:%s\n", auxp, id);
 
 	return true;
 }
