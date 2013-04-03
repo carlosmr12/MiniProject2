@@ -23,6 +23,9 @@ clean:
 phase2:
 	./phase2
 
+phase3: phase3.c
+	gcc phase3.c -o phase3 -I /usr/include/libxml12 -ldb -lxml2
+
 #   file dependencies: paste output of g++ -MM *.c here
 #   if one file on the rhs is newer, use rule to update lhs
 main.o : main.c stringHelper.h stringHelper.c fileHelper.h fileHelper.c constants.h
